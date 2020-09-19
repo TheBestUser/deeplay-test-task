@@ -1,14 +1,17 @@
 FROM node:current-alpine
 
-ENV NODE_ENV=production
-
 RUN mkdir /app
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json .
+
+ENV NODE_ENV=production
 
 RUN npm install --production
 
-COPY . .
+COPY moleculer.config.js ./
+
+EXPOSE 4445
+EXPOSE 9229
 
 CMD ["npm", "start"]
