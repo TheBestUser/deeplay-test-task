@@ -4,39 +4,47 @@ services:
 
   api:
     build:
-      context: .
-    image: deeplay
+      context: src/api
+    image: deeplay-test-api
     env_file: docker-compose.env
     environment:
-      SERVICES: api
       PORT: 3000
+    ports:
+      - 3000:3000
     depends_on:
       - nats
-    networks:
-      - internal
+    restart: always
+#    networks:
+#      - internal
 
   worker:
     build:
-      context: .
-    image: deeplay
+      context: src/worker
+    image: deeplay-test-worker
     env_file: docker-compose.env
-    environment:
-      SERVICES: worker
     depends_on:
       - nats
-    networks:
-      - internal
-    deploy:
-      mode: replicated
-      replicas: 4
+    volumes:
+      - ./data:/logs
+    restart: always
+############################################
+#    replicas supported only for swarm mode
+############################################
+#    deploy:
+#      mode: replicated
+#      replicas: 4
+#    networks:
+#      - internal
 
   nats:
-    image: nats:2
-    networks:
-      - internal
+    image: nats
+    restart: always
+#    networks:
+#      - internal
 
-networks:
-  internal:
+#networks:
+#  internal:
+#    driver: overlay
 
-volumes:
-  data:
+#volumes:
+#  data: ./data
