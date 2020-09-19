@@ -1,0 +1,17 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "moleculer-runner --repl --hot service.js",
+    "start": "moleculer-runner service.js",
+    "docker": "docker build -t moleculer-worker ."
+  },
+  "keywords": [],
+  "author": "Kuzmichev Alexandr",
+  "license": "MIT",
+  "dependencies": {
+    "moleculer": "^0.14.10",
+    "nats": "^1.4.12"
+  }
+}
