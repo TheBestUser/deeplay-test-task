@@ -1,0 +1,46 @@
+{
+  "name": "deeplay-test",
+  "version": "1.0.0",
+  "description": "Moleculer-based microservices test project for Deeplay",
+  "scripts": {
+    "dev": "moleculer-runner --env --repl --hot services/**/*.service.js",
+    "start": "moleculer-runner",
+    "cli": "moleculer connect -c moleculer.config.js nats://0.0.0.0:4222",
+    "ci": "jest --watch",
+    "test": "jest --coverage",
+    "lint": "eslint services",
+    "dc:up": "docker-compose up --build -d",
+    "dc:logs": "docker-compose logs -f",
+    "dc:down": "docker-compose down"
+  },
+  "keywords": [
+    "microservices",
+    "moleculer"
+  ],
+  "author": "Kuzmichev Alexandr",
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "jest": "^26.4.2",
+    "jest-cli": "^26.4.2",
+    "moleculer-repl": "^0.6.4"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "moleculer": "^0.14.10",
+    "moleculer-db": "^0.8.9",
+    "moleculer-db-adapter-mongo": "^0.4.9",
+    "moleculer-web": "^0.9.1",
+    "nats": "^1.4.12"
+  },
+  "engines": {
+    "node": ">= 10.x.x"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "rootDir": "./services",
+    "roots": [
+      "../test"
+    ]
+  }
+}
