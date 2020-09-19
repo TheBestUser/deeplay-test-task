@@ -26,6 +26,9 @@ services:
       - nats
     networks:
       - internal
+    deploy:
+      mode: replicated
+      replicas: 4
 
   nats:
     image: nats:2

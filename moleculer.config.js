@@ -36,7 +36,7 @@ module.exports = {
 	disableBalancer: false,
 	registry: {
 		strategy: "Latency",
-		preferLocal: true
+		preferLocal: false
 	},
 	circuitBreaker: {
 		enabled: false,
