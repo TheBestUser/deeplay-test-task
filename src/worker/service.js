@@ -20,10 +20,16 @@ module.exports = {
 				delay: 500
 			},
 			timeout: 5000,
-			// shardKey: "requestId",
+			strategy: "Shard",
+			strategyOptions: {
+				shardKey: "requestId",
+				ringSize: 100,
+				vnodes: 12
+			},
 			/** @param {Context} ctx  */
 			async handler(ctx) {
-				this.logger.info(`${ctx.params.requestId} - ${this.broker.instanceID}`);
+				// this.logger.info(`[${this.broker.instanceID} -> ${ctx.requestID}]`);
+				this.logger.info(`[${this.broker.instanceID} -> ${ctx.params.requestId}]`);
 
 				return this.Promise.resolve(this.broker.instanceID).delay(100);
 			}

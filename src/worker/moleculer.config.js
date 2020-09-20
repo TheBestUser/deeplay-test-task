@@ -23,9 +23,6 @@ module.exports = {
 	],
 	logLevel: "info",
 	registry: {
-		strategy: "Shard",
-		strategyOptions: {
-			shardKey: "requestId",
-		}
-	},
+		strategy: "RoundRobin"
+	}
 };

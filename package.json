@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "moleculer-runner --env --repl --hot services/**/*.service.js",
     "start": "moleculer-runner",
+    "start:api": "moleculer-runner -c src/api/moleculer.config.js src/api/service.js",
+    "start:worker": "moleculer-runner --instances 4 -c src/worker/moleculer.config.js src/worker/service.js",
     "cli": "moleculer connect --ns deeplay nats",
     "ci": "jest --watch",
     "test": "jest --coverage",
+    "test:shard": "node test/integration/shard-strategy.js",
     "lint": "eslint services",
     "dc:up": "docker-compose up --build -d --scale worker=4",
     "dc:logs": "docker-compose logs -f",
@@ -26,6 +29,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "lodash": "^4.17.20",
     "moleculer": "^0.14.10",
     "moleculer-db": "^0.8.9",
     "moleculer-db-adapter-mongo": "^0.4.9",
