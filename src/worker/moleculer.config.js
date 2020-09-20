@@ -3,7 +3,6 @@
 const hostname = require("os").hostname();
 
 module.exports = {
-	namespace: "deeplay",
 	nodeID: `worker-${hostname}`,
 	logger: [
 		{
@@ -23,4 +22,10 @@ module.exports = {
 		},
 	],
 	logLevel: "info",
+	registry: {
+		strategy: "Shard",
+		strategyOptions: {
+			shardKey: "requestId",
+		}
+	},
 };
