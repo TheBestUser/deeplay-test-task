@@ -10,7 +10,7 @@ module.exports = {
 		 * @param {String} requestId - id of request
 		 */
 		process: {
-			rest: "/process",
+			// rest: "/process",
 			params: {
 				requestId: "string"
 			},
@@ -22,7 +22,8 @@ module.exports = {
 			timeout: 5000,
 			strategy: "Shard",
 			strategyOptions: {
-				shardKey: "requestId",
+				// shardKey: "requestId",
+				shardKey: "req.query.requestId",
 				ringSize: 100,
 				vnodes: 12
 			},

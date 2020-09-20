@@ -14,10 +14,13 @@ module.exports = {
 				whitelist: [
 					"**"
 				],
+				aliases: {
+					"GET /worker/process": "worker.process",
+				},
 				mergeParams: true,
 				authentication: false,
 				authorization: false,
-				autoAliases: true,
+				// autoAliases: true,
 				bodyParsers: {
 					json: {
 						strict: false,
@@ -28,7 +31,7 @@ module.exports = {
 						limit: "1MB"
 					}
 				},
-				mappingPolicy: "all",
+				mappingPolicy: "restrict",
 				logging: true
 			}
 		],
