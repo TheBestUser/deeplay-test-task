@@ -23,6 +23,7 @@ module.exports = {
 	],
 	logLevel: "info",
 	registry: {
-		strategy: "RoundRobin"
+		strategy: "RoundRobin",
+		preferLocal: false,
 	}
 };
