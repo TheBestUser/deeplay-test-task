@@ -15,7 +15,11 @@ module.exports = {
 					"**"
 				],
 				aliases: {
-					"GET /worker/process": "worker.process",
+					"GET /worker/process"(req, res) {
+						this.broker.call("worker.process", req.$params).then(
+							result => res.end(result)
+						)
+					},
 				},
 				mergeParams: true,
 				authentication: false,

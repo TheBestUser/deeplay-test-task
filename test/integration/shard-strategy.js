@@ -38,6 +38,11 @@ async function start() {
 		const name = usernames[_.random(usernames.length - 1)];
 		await main.call("worker.process", { requestId: name });
 	}, 1000);
+
+	setTimeout(() => broker1.stop(), 10000);
+	setTimeout(() => broker2.stop(), 20000);
+	setTimeout(() => broker3.stop(), 30000);
+	setTimeout(() => broker4.stop(), 40000);
 }
 
 start();
