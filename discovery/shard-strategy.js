@@ -3,13 +3,13 @@ const _ = require('lodash');
 
 function createBroker(opts) {
 	const broker = new ServiceBroker({
-		...require('../../src/worker/moleculer.config'),
+		...require('../src/worker/moleculer.config'),
 		...opts,
 		transporter: "NATS",
 	});
 
 	if (broker.nodeID !== "main") {
-		broker.createService(require('../../src/worker/service'));
+		broker.createService(require('../src/worker/service'));
 	}
 
 	return broker;
