@@ -29,10 +29,9 @@ module.exports = {
 			},
 			/** @param {Context} ctx  */
 			async handler(ctx) {
-				// this.logger.info(`[${this.broker.instanceID} -> ${ctx.requestID}]`);
-				this.logger.info(`[${this.broker.instanceID} -> ${ctx.params.requestId}]`);
+				this.logger.info(`[${ctx.requestID} -> ${this.broker.instanceID}] (${ctx.params.requestId})`);
 
-				return this.Promise.resolve(this.broker.instanceID).delay(100);
+				return this.Promise.resolve(this.broker.instanceID).delay(1000);
 			}
 		}
 	},

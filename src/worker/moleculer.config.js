@@ -3,7 +3,7 @@
 const hostname = require("os").hostname();
 
 module.exports = {
-	nodeID: `worker-${hostname}`,
+	nodeID: `worker-${hostname}-${process.pid}`,
 	logger: [
 		{
 			type: "Console",
