@@ -22,13 +22,16 @@ TRANSPORTER=nats
 4. Start flooder script with `npm run start:flood` command.
 > Number of values requestId can be changed by an `FLOODER_MAX` environment variable.
 
-## Shard & Retry
+## Shard testing
 
-Before testing shard strategy and retry policy you need to change `shardKey` with `WORKER_SHARD_KEY` environment variable. (Or just replace [this](https://github.com/TheBestUser/deeplay-test/blob/main/src/worker/service.js#L27) on `shardKey: "requestId"`)
-```
-WORKER_SHARD_KEY=requestId
-```
-This is necessary due to a bug in the moleculer-web for remote nodes ctx.
+1. Start shard strategy test with `npm run test:shard` command.
+2. Check that requests with the same requestId are processed by one worker instance.
+
+## Retry testing
+
+1. Start retry policy test with `npm run test:retry` command.
+2. Wait 20 seconds for the request flood to end
+3. After that, wait another 10 seconds for the results to be displayed
 
 ## NPM scripts
 

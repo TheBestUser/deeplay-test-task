@@ -1,5 +1,9 @@
 FROM node:current-alpine
 
+RUN apk add --update \
+    curl \
+    && rm -rf /var/cache/apk/*
+
 RUN mkdir /app
 WORKDIR /app
 
@@ -9,6 +13,6 @@ ENV NODE_ENV=production
 
 RUN npm install --production
 
-COPY moleculer.config.js service.js ./
+COPY . .
 
 CMD ["npm", "start"]

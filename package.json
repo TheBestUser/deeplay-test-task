@@ -5,14 +5,14 @@
   "scripts": {
     "dev": "moleculer-runner --env --repl --hot services/**/*.service.js",
     "start": "moleculer-runner",
-    "start:api": "moleculer-runner -e -c src/api/moleculer.config.js src/api/service.js",
-    "start:worker": "moleculer-runner -e -c src/worker/moleculer.config.js src/worker/service.js",
+    "start:api": "moleculer-runner -e services/api/api.service.js",
+    "start:worker": "moleculer-runner -e services/worker/worker.service.js",
     "start:flood": "node discovery/flooder.js",
     "cli": "moleculer connect --ns deeplay nats",
     "ci": "jest --watch",
     "test": "jest --coverage",
-    "test:shard": "node discovery/shard-strategy.js",
-    "test:retry": "node discovery/retry-policy.js",
+    "test:shard": "set WORKER_SHARD_KEY=requestId && node discovery/shard-strategy.js",
+    "test:retry": "set WORKER_SHARD_KEY=requestId && node discovery/retry-policy.js",
     "lint": "eslint services",
     "dc:up": "docker-compose up --build -d --scale worker=4",
     "dc:nats": "docker-compose up -d nats",
@@ -47,9 +47,9 @@
   "jest": {
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
-    "rootDir": "./src",
+    "rootDir": ".",
     "roots": [
-      "../test"
+      "test"
     ]
   }
 }

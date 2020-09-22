@@ -1,52 +1,50 @@
-version: "3.3"
+version: "3.4"
 
 services:
 
   api:
     build:
-      context: src/api
-    image: deeplay-test-api
+      context: .
+    image: deeplay-test
     env_file: docker-compose.env
     environment:
+      SERVICES: api
       PORT: 3000
     ports:
       - 3000:3000
+#    need to get docker health-check code (0, 1, 2)
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:3001/live"]
+#      interval: 1m30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 40s
     depends_on:
       - nats
     restart: always
-#    networks:
-#      - internal
 
   worker:
     build:
-      context: src/worker
-    image: deeplay-test-worker
+      context: .
+    image: deeplay-test
     env_file: docker-compose.env
+    environment:
+      SERVICES: worker
+#    need to get docker health-check code (0, 1, 2)
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:3001/live"]
+#      interval: 1m30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 40s
     depends_on:
       - nats
     volumes:
       - ./data:/logs
     restart: always
-############################################
-#    replicas supported only for swarm mode
-############################################
-#    deploy:
-#      mode: replicated
-#      replicas: 4
-#    networks:
-#      - internal
 
   nats:
     image: nats
     restart: always
     ports:
       - 4222:4222
-#    networks:
-#      - internal
-
-#networks:
-#  internal:
-#    driver: overlay
-
-#volumes:
-#  data: ./data

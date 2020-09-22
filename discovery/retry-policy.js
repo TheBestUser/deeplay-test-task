@@ -7,14 +7,14 @@ const errorPercent = process.env.ERROR_PERCENT || 33;
 
 function createBroker(opts) {
 	const broker = new ServiceBroker({
-		...require('../src/worker/moleculer.config'),
+		...require('../moleculer.config'),
 		...opts,
 		transporter: "NATS",
 	});
 
 	if (broker.nodeID !== "main") {
 		broker.createService(_.defaultsDeep(
-			require('../src/worker/service'),
+			require('../services/worker/worker.service'),
 			{
 				hooks: {
 					before: {

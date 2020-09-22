@@ -1,6 +1,7 @@
 "use strict";
 
-const shardKey = process.env.WORKER_SHARD_KEY || "req.query.requestId";
+const shardKey = (process.env.WORKER_SHARD_KEY || "req.query.requestId").trim();
+console.warn(shardKey);
 
 module.exports = {
 	name: "worker",

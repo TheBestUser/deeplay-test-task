@@ -3,5 +3,10 @@ docker-compose.yml
 Dockerfile
 node_modules
 test
+discovery
 .vscode
 .idea
+.env
+coverage
+data
+README.md
