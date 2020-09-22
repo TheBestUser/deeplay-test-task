@@ -10,7 +10,6 @@ function createBroker(opts) {
 		...require('../src/worker/moleculer.config'),
 		...opts,
 		transporter: "NATS",
-		logger: false,
 	});
 
 	if (broker.nodeID !== "main") {
@@ -91,7 +90,7 @@ async function start() {
 	setTimeout(() => {
 		main.logger.warn(failedRequests);
 		main.logger.warn(`Total: ${reqCount}`);
-		main.logger.warn(`Failed: ${failedRequests.length} (${Math.floor(failedRequests.length/reqCount*100)}%)`);
+		main.logger.warn(`Failed: ${failedRequests.length} (${Math.round(failedRequests.length/reqCount*100)}%)`);
 	},30000);
 }
 

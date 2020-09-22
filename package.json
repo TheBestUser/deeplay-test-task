@@ -7,6 +7,7 @@
     "start": "moleculer-runner",
     "start:api": "moleculer-runner -e -c src/api/moleculer.config.js src/api/service.js",
     "start:worker": "moleculer-runner -e -c src/worker/moleculer.config.js src/worker/service.js",
+    "start:flood": "node discovery/flooder.js",
     "cli": "moleculer connect --ns deeplay nats",
     "ci": "jest --watch",
     "test": "jest --coverage",
@@ -14,6 +15,7 @@
     "test:retry": "node discovery/retry-policy.js",
     "lint": "eslint services",
     "dc:up": "docker-compose up --build -d --scale worker=4",
+    "dc:nats": "docker-compose up -d nats",
     "dc:logs": "docker-compose logs -f",
     "dc:down": "docker-compose down"
   },

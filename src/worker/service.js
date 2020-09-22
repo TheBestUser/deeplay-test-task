@@ -1,5 +1,7 @@
 "use strict";
 
+const shardKey = process.env.WORKER_SHARD_KEY || "req.query.requestId";
+
 module.exports = {
 	name: "worker",
 
@@ -22,8 +24,7 @@ module.exports = {
 			timeout: 5000,
 			strategy: "Shard",
 			strategyOptions: {
-				// shardKey: "requestId",
-				shardKey: "req.query.requestId",
+				shardKey: shardKey, // "requestId" or "req.query.requestId"
 				ringSize: 100,
 				vnodes: 12
 			},
